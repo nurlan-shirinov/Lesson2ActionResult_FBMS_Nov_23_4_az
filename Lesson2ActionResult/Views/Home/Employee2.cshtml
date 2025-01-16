@@ -1,0 +1,56 @@
+﻿@* @model IEnumerable<Lesson2ActionResult.Entites.Employee>
+
+<!DOCTYPE html>
+
+<html>
+    <head></head>
+    <body>
+        @foreach (var item in Model)
+    {
+        <div>
+
+            <div>
+                <span>User id : @item.Id</span>
+            </div>
+
+            <h1>Firstname : @item.Firstname</h1>
+            <h1>Lastname : @item.Lastname</h1>
+            <h1>City Id : @item.CityId</h1>
+
+        </div>
+    }
+
+    </body>
+</html> *@
+
+
+@model Lesson2ActionResult.Models.EmployeeViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+</head>
+<body>
+    @foreach (var item in Model.Employee)
+    {
+        <div>
+
+            <div>
+                <span>User id : @item.Id</span>
+            </div>
+
+            <h1>Firstname : @item.Firstname</h1>
+            <h1>Lastname : @item.Lastname</h1>
+            <h1>City Id : @item.CityId</h1>
+
+        </div>
+    }
+
+    @foreach (var item in Model.Cities)
+    {
+        <h2>@item</h2>
+    }
+
+</body>
+</html>
