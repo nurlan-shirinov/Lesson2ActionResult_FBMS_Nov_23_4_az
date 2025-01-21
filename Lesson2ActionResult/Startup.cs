@@ -1,13 +1,12 @@
+using Lesson2ActionResult.Context;
+using Lesson2ActionResult.Repositories;
+using Lesson2ActionResult.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Lesson2ActionResult
 {
@@ -24,6 +23,16 @@ namespace Lesson2ActionResult
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            var connectionString = "Data Source=(localdb)\\ProjectModels;Initial Catalog=SchoolDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            //var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<SchoolDbContext>(opt =>
+            {
+                opt.UseSqlServer(connectionString);
+            });
+
+            services.AddScoped<IStudentRepository, StudentRespository>();
+            services.AddScoped<IStudentService, StudentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

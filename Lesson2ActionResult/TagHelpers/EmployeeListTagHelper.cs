@@ -20,7 +20,7 @@ namespace Lesson2ActionResult.TagHelpers
                 {
                     Id = 1,
                     CityId = 1,
-                    Firstname="Aqshin",
+                    Firstname="Mahir",
                     Lastname = "Ahmedli"
                 },
 
@@ -55,15 +55,28 @@ namespace Lesson2ActionResult.TagHelpers
                 }
             };
         }
-        private const string ListCountAttribute = "count";
 
-        [HtmlAttributeName(ListCountAttribute)]
-        public int ListCount { get; set; }
+        private const string SortAttribute = "sort";
+        [HtmlAttributeName(SortAttribute)]
+        public string SortOrder { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "section";
-            var query = _employees.Take(ListCount);
+            IEnumerable<Employee> query;
+            switch (SortOrder.ToLower())
+            {
+                case "a-z":
+                    query = _employees.OrderBy(e=>e.Firstname);
+                    break;
+                case "z-a":
+                    query = _employees.OrderByDescending(e=>e.Firstname);
+                    break;
+                default:
+                    query = _employees;
+                    break;
+            }
+
             StringBuilder sb = new StringBuilder();
             foreach (var item in query)
             {

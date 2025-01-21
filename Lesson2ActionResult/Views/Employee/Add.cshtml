@@ -1,52 +1,37 @@
-﻿
-@model Lesson2ActionResult.Models.EmployeeAddViewModel
+﻿@model Lesson2ActionResult.Models.EmployeeAddViewModel
 
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
+<form asp-controller="Employee" asp-action="Add" method="post">
+    <section>
+        <label asp-for="Employee.Id"></label>
+        <input asp-for="Employee.Id" />
+        <span style="color:red;" asp-validation-for="Employee.Id"></span>
+    </section>
 
-<html>
-<head>
-    Add
-</head>
+    <section>
+        <label asp-for="Employee.Firstname"></label>
+        <input asp-for="Employee.Firstname" />
+        <span style="color:red;" asp-validation-for="Employee.Firstname"></span>
 
-<body>
-    <form asp-controller="Employee" asp-action="Add" method="post">
-        <section>
-            <label asp-for="Employee.Id"></label>
-            <input asp-for="Employee.Id" />
-            <span style="color:red;" asp-validation-for="Employee.Id"></span>
-        </section>
+    </section>
 
-        <section>
-            <label asp-for="Employee.Firstname"></label>
-            <input asp-for="Employee.Firstname" />
-            <span style="color:red;" asp-validation-for="Employee.Firstname"></span>
 
-        </section>
+    <section>
+        <label asp-for="Employee.Lastname"></label>
+        <input asp-for="Employee.Lastname" />
+        <span style="color:red;" asp-validation-for="Employee.Lastname"></span>
 
-         
-        <section>
-            <label asp-for="Employee.Lastname"></label>
-            <input asp-for="Employee.Lastname" />
-            <span style="color:red;" asp-validation-for="Employee.Lastname"></span>
+    </section>
 
-        </section>
+    <section>
+        <label asp-for="Employee.CityId"></label>
+        <select asp-for="Employee.CityId" asp-items="Model.Cities"></select>
+    </section>
 
-        <section>
-            <label asp-for="Employee.CityId"></label>
-            <select asp-for="Employee.CityId" asp-items="Model.Cities"></select>
-        </section>
+    <section>
+        <button type="submit">Submit</button>
 
-        <section>
-            <button type="submit">Submit</button>
+    </section>
 
-        </section>
-
-        <employee-list count="2"></employee-list>
-    </form>
-</body>
-
-</html>
+    <employee-list sort="z-a"></employee-list>
+</form>

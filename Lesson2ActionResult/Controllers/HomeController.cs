@@ -1,5 +1,6 @@
 ﻿using Lesson2ActionResult.Entites;
 using Lesson2ActionResult.Models;
+using Lesson2ActionResult.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System.Collections.Generic;
@@ -9,9 +10,18 @@ namespace Lesson2ActionResult.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ICalculate _calculate1;
+        private readonly ICalculate _calculate2;
+
+        public HomeController(ICalculate calculate1, ICalculate calculate2)
+        {
+            _calculate1 = calculate1;
+            _calculate2 = calculate2;
+        }
+
         public string Index()
         {
-            return "Hello From Index Action";
+            return $"Hello From Index Action {_calculate1.MyCalculate(100)} - {_calculate2.MyCalculate(100)}";
         }
 
         public IActionResult Index2()

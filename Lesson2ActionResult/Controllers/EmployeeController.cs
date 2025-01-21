@@ -1,5 +1,6 @@
 ﻿using Lesson2ActionResult.Entites;
 using Lesson2ActionResult.Models;
+using Lesson2ActionResult.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
@@ -8,6 +9,10 @@ namespace Lesson2ActionResult.Controllers
 {
     public class EmployeeController : Controller
     {
+       
+
+
+
         //hecbir http ver istifade etmedikde default olaraq GET sorgusu olur.
         [HttpGet]
         public IActionResult Add()
